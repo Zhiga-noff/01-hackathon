@@ -3,8 +3,7 @@ export class BackgroundModule extends Module {
 	constructor(type,text){
 		super(type,text);
 	}
-	changeColor(){
-		document.body.addEventListener('click', ()=>{
+	trigger(){
 			document.body.style.backgroundColor = getRandomColor();
 			function getRandomColor() {
 				const letters = '0123456789ABCDEF';
@@ -13,7 +12,6 @@ export class BackgroundModule extends Module {
 				  color += letters[Math.floor(Math.random() * 16)];
 				}
 				return color;
-			}
-		})
+		}
 	}
 }
