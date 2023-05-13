@@ -25,7 +25,6 @@ export class ContextMenu extends Menu {
   }
 
   close() {
-    console.log(this.el);
     this.el.classList.remove('open');
   }
 
@@ -37,13 +36,7 @@ export class ContextMenu extends Menu {
     
     if (typeof moduleNode !== null) { //обработка клика
       moduleNode.addEventListener('click', (event) => {
-        // const nameModule = moduleNode.dataset.type;
-        // console.log(module);
-        // console.log(nameModule);
-        // // const activeModule = module.find(module => modul.type === nameModule);
-        const activeModule = module;
-
-        activeModule.trigger();
+        module.trigger();
         this.close();
       });
     }

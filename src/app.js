@@ -19,11 +19,7 @@ document.addEventListener("contextmenu", (event) => {
   const { clientX, clientY } = event;
   contextMenu.open(clientX, clientY);
 });
-document.body.addEventListener('click',(event)=>{
-	if(event.target == contextMenu){
-		contextMenu.close()
-	}
-})
+
 
 //перенес сюда. Чтобы не добавлялись повторно в меню.
 moduleFeatches.forEach(module => {
