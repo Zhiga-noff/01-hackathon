@@ -38,7 +38,6 @@ export class ClicksModule extends Module {
 
     document.body.append(modalWindow)
 
-    const beforeElement = modalWindow.querySelector('.modal-window::before')
     setTimeout(()=>{
       modalWindow.classList.add('open')
     }, 500)
