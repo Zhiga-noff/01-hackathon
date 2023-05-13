@@ -2,6 +2,7 @@ import {Module} from '../core/module'
 
 export class TimerModule extends Module {
     constructor() {
+      super()
         this.time = 0;
         this.text = null;
         this.timerId = null;
