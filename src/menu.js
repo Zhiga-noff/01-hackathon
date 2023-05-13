@@ -8,11 +8,28 @@ export class ContextMenu extends Menu {
   open(positionX, positionY) {
     console.log(this.el);
     this.el.classList.add("open");
-    this.el.style.top = `${positionY}px`;
-    this.el.style.left = `${positionX}px`;
+
+    const windowWidth = document.documentElement.clientWidth;
+    const windowHeight = document.documentElement.clientHeight;
+
+    // console.log(windowWidth, windowHeight);
+    console.log(this.el.offsetWidth);
+
     const li = document.createElement("li");
     li.textContent = "khdgadshgalkj";
     this.el.append(li);
+
+    if (positionX + this.el.offsetWidth >= windowWidth) {
+      this.el.style.left = `${positionX - this.el.offsetWidth}px`;
+    } else {
+      this.el.style.left = `${positionX}px`;
+    }
+
+    if (positionY + this.el.offsetHeight >= windowHeight) {
+      this.el.style.top = `${positionY - this.el.offsetHeight}px`;
+    } else {
+      this.el.style.top = `${positionY}px`;
+    }
   }
 
   close() {
