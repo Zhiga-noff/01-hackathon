@@ -6,18 +6,12 @@ export class ContextMenu extends Menu {
   }
 
   open(positionX, positionY) {
-    console.log(this.el);
     this.el.classList.add("open");
 
     const windowWidth = document.documentElement.clientWidth;
     const windowHeight = document.documentElement.clientHeight;
 
-    // console.log(windowWidth, windowHeight);
-    console.log(this.el.offsetWidth);
-
-    const li = document.createElement("li");
-    li.textContent = "khdgadshgalkj";
-    this.el.append(li);
+    this.add();
 
     if (positionX + this.el.offsetWidth >= windowWidth) {
       this.el.style.left = `${positionX - this.el.offsetWidth}px`;
