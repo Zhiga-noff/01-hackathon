@@ -17,20 +17,6 @@ export class FigureModule extends Module {
     }
 
     trigger() {
-
-        const figure = document.querySelectorAll('.figure');
-        if (figure.length) {
-            figure.forEach(item => {
-                item.classList.add('animation--hide');
-               
-                setTimeout(() => {
-                    item.classList.remove('animation--show');
-                }, 500);
-
-                setTimeout(this.remove, 1000, item);
-            });
-        } 
-
         const newFigure = this.create(); 
         newFigure.style.background = this.baseColor;
         const borderRadius = random(1,  50);
@@ -42,6 +28,7 @@ export class FigureModule extends Module {
         newFigure.style.borderRadius = `${borderRadius}%`;
         this.setPosition(newFigure, width, height);
         document.body.append(newFigure);
+        this.remove(newFigure);
     }
 
     create() {
@@ -51,7 +38,12 @@ export class FigureModule extends Module {
     }
 
     remove(figure) {
-        figure.remove(figure);
+        figure.classList.add('animation--hide');
+        
+        setTimeout(() => {
+            figure.classList.remove('animation--show');
+            figure.remove();
+        }, 1500);
     }
 
     setPosition(el, elWidth, elHeight) {
