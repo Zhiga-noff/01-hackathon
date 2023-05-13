@@ -4,13 +4,14 @@ import { ContextMenu } from "./menu";
 import { BackgroundModule } from '../src/modules/background.module.js';
 import { FigureModule } from '../src/modules/figure.module';
 import { ClicksModule } from '../src/modules/clicks.module';
-// import { TimerModule } from '@/modules/timer.module';
+import { hiddenMenu } from '@/utils';
+import { TimerModule } from '@/modules/timer.module';
 
 const moduleFeatches = [
   new ClicksModule('clicks', 'Считать клики (за 3 секунды)'),
   new BackgroundModule('background', 'Поменять цвет'),
   new FigureModule('figure', 'Создать фигуру'),
-  // new TimerModule('timer', 'Запустить обратный отчет'),
+  new TimerModule('timer', 'Запустить обратный отчет'),
 ];
 
 
@@ -20,6 +21,7 @@ document.addEventListener("contextmenu", (event) => {
   event.preventDefault();
   const { clientX, clientY } = event;
   contextMenu.open(clientX, clientY);
+  hiddenMenu()
 });
 
 
@@ -27,3 +29,4 @@ document.addEventListener("contextmenu", (event) => {
 moduleFeatches.forEach(module => {
   contextMenu.add(module);
 });
+

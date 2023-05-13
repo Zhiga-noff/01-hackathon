@@ -13,7 +13,6 @@ export class ClicksModule extends Module {
     setTimeout(() => {
 
       this.createModalWindow(countClick)
-      // alert(`Ну ты и накликал ${countClick-1} раз(а)`);
       document.removeEventListener('click', () => {
         countClick++;
       });
@@ -38,5 +37,17 @@ export class ClicksModule extends Module {
     modalWindow.append(infoAboutClick)
 
     document.body.append(modalWindow)
+
+    const beforeElement = modalWindow.querySelector('.modal-window::before')
+    setTimeout(()=>{
+      modalWindow.classList.add('open')
+    }, 500)
+
+    closeWindow.addEventListener('click', ()=>{
+      modalWindow.classList.remove('open')
+      setTimeout(()=>{
+        modalWindow.remove()
+      }, 1000)
+    })
   }
 }
