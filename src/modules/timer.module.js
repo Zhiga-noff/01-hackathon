@@ -22,36 +22,28 @@ export class TimerModule extends Module {
     modalWindowTimer.append(closeWindow)
 
     const formModal = document.createElement('form')
-    formModal.className = 'form-modal'
+    formModal.className = 'form-modal border'
     modalWindowTimer.append(formModal)
 
-    const labelInput = document.createElement('label')
-    labelInput.setAttribute('for', 'input-modal')
-    labelInput.textContent = 'Задайте время в секундах'
-    formModal.append(labelInput)
-
-    const inputModal = document.createElement('input')
-    inputModal.id = 'input-modal'
-    inputModal.name = 'time'
-    formModal.append(inputModal)
-
-    const buttonModal = document.createElement('button')
-    buttonModal.className = 'button-modal'
-    buttonModal.textContent = 'Задать время'
-    formModal.append(buttonModal)
-
+    formModal.insertAdjacentHTML('beforeend', `
+    <div class="request">
+       <label for="input-modal">Задайте время в секундах</label>
+       <div class="block-input">
+         <input id="input-modal" name="time" class="input-modal">
+         <button class="button-modal">Задать время</button>
+      </div>
+    </div>
+    `)
 
      this.textClock = document.createElement('p')
-     this.textClock.className = 'count-click hidden'
-    modalWindowTimer.append( this.textClock)
+     this.textClock.className = 'info hidden'
+    formModal.append( this.textClock)
 
     document.body.append(modalWindowTimer)
 
     setTimeout(()=>{
       modalWindowTimer.classList.add('open')
     }, 1000)
-
-    return modalWindowTimer
   }
 
   trigger() {
@@ -63,6 +55,7 @@ export class TimerModule extends Module {
     this.requestProcessing()
     this.closeWindow()
   }
+
   requestProcessing() {
     const formModal = document.querySelector('.form-modal')
     formModal.addEventListener('submit', (event)=>{
@@ -75,12 +68,19 @@ export class TimerModule extends Module {
 
       if (newTime !== null && newTime !== "" && !isNaN(newTime) && newTime >= 0) {
         this.time = Number(newTime);
-        const div = document.getElementById("timer-div");
+
+        const request = document.querySelector('.request')
+        request.classList.add('hidden', 'no-height')
+
+        const info = document.querySelector('.info')
+        info.classList.remove('margin')
+        info.textContent = 'Loading...'
 
         this.timerId = setInterval(this.updateTimer, 1000);
 
       } else {
-
+        const info = document.querySelector('.info')
+        info.classList.add('margin')
         this.textClock.textContent = 'Некорректное время!'
       }
     })
@@ -90,21 +90,20 @@ export class TimerModule extends Module {
     const minutes = Math.floor(this.time / 60);
     const seconds = this.time % 60;
     const modalWindowTimer = document.querySelector('.modal-window')
+    const info = modalWindowTimer.querySelector('.info')
+    info.classList.remove('margin')
 
    this.textClock.textContent = `TIMER TIME: ${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
     this.time--;
     if (this.time < 0 || !modalWindowTimer) {
       clearInterval(this.timerId);
+
+      info.classList.add('margin')
+
       this.textClock.textContent = "TIMER ENDED!";
 
-      // setTimeout(() => {
-      //   if (modalWindowTimer) {
-      //     modalWindowTimer.classList.remove('open')
-      //     setTimeout(()=>{
-      //       modalWindowTimer.remove()
-      //     }, 1000)
-      //   }
-      // }, 2000);
+      const request = document.querySelector('.request')
+      request.classList.remove('hidden', 'no-height')
     }
   }
 
@@ -113,6 +112,7 @@ export class TimerModule extends Module {
     const closeWindow = document.querySelector('.close-window')
     closeWindow.addEventListener('click', ()=>{
       modalWindowTimer.classList.remove('open')
+      clearInterval(this.timerId);
       setTimeout(()=>{
         modalWindowTimer.remove()
       }, 1000)

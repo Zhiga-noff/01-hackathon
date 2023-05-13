@@ -32,7 +32,7 @@ export class ClicksModule extends Module {
     modalWindow.append(closeWindow)
 
     const infoAboutClick = document.createElement('p')
-    infoAboutClick.className = 'count-click'
+    infoAboutClick.className = 'info border'
     infoAboutClick.textContent = `Ну ты и накликал конечно, ${count-1} раз(а)`
     modalWindow.append(infoAboutClick)
 
