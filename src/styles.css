@@ -40,3 +40,44 @@ body {
 .menu .menu-item:hover {
     background: #343434;
 }
+body {
+    position: relative;
+}
+
+.figure {
+    position: absolute;
+    opacity: 0;
+}
+
+/* animation hide */
+.animation {
+    transition: 1s ease-in-out;
+}
+.animation--hide {
+    animation: fadeOut 0.5s ease-in-out;
+}
+.animation--show 
+{
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
