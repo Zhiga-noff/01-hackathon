@@ -12,7 +12,7 @@ export class ContextMenu extends Menu {
     const windowWidth = document.documentElement.clientWidth;
     const windowHeight = document.documentElement.clientHeight;
 
-    this.add();
+   // this.add();
 
     const li = document.createElement("li");
 		li.classList = 'menu-item';
