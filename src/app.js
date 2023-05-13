@@ -8,3 +8,8 @@ document.addEventListener("contextmenu", (event) => {
   const { clientX, clientY } = event;
   contextMenu.open(clientX, clientY);
 });
+document.body.addEventListener('click',(event)=>{
+	if(event.target == contextMenu){
+		contextMenu.close()
+	}
+})
