@@ -1,5 +1,5 @@
-import "./styles.css";
-import { ContextMenu } from "./menu";
+import './styles.css';
+import { ContextMenu } from './menu';
 
 import { BackgroundModule } from './modules/background.module.js';
 import { FigureModule } from './modules/figure.module';
@@ -11,22 +11,19 @@ const moduleFeatches = [
   new ClicksModule('clicks', 'Считать клики (за 3 секунды)'),
   new BackgroundModule('background', 'Поменять цвет'),
   new FigureModule('figure', 'Создать фигуру'),
-  new TimerModule('timer', 'Запустить обратный отчет'),
+  new TimerModule('timer', 'Запустить обратный отчет')
 ];
 
+const contextMenu = new ContextMenu('#menu');
 
-const contextMenu = new ContextMenu("#menu");
-
-document.addEventListener("contextmenu", (event) => {
+document.addEventListener('contextmenu', (event) => {
   event.preventDefault();
   const { clientX, clientY } = event;
   contextMenu.open(clientX, clientY);
-  hiddenMenu()
+  hiddenMenu();
 });
-
 
 //перенес сюда. Чтобы не добавлялись повторно в меню.
-moduleFeatches.forEach(module => {
+moduleFeatches.forEach((module) => {
   contextMenu.add(module);
 });
-

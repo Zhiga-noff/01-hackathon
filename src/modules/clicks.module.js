@@ -11,8 +11,7 @@ export class ClicksModule extends Module {
       countClick++;
     });
     setTimeout(() => {
-
-      this.createModalWindow(countClick)
+      this.createModalWindow(countClick);
       document.removeEventListener('click', () => {
         countClick++;
       });
@@ -24,29 +23,31 @@ export class ClicksModule extends Module {
   }
 
   createModalWindow(count) {
-    const modalWindow = document.createElement('div')
-    modalWindow.className = 'modal-window'
+    const modalWindow = document.createElement('div');
+    modalWindow.className = 'modal-window';
 
-    const closeWindow = document.createElement('div')
-    closeWindow.className = 'close-window'
-    modalWindow.append(closeWindow)
+    const closeWindow = document.createElement('div');
+    closeWindow.className = 'close-window';
+    modalWindow.append(closeWindow);
 
-    const infoAboutClick = document.createElement('p')
-    infoAboutClick.className = 'info border'
-    infoAboutClick.textContent = `Ну ты и накликал конечно, ${count-1} раз(а)`
-    modalWindow.append(infoAboutClick)
+    const infoAboutClick = document.createElement('p');
+    infoAboutClick.className = 'info border';
+    infoAboutClick.textContent = `Ну ты и накликал конечно, ${
+      count - 1
+    } раз(а)`;
+    modalWindow.append(infoAboutClick);
 
-    document.body.append(modalWindow)
+    document.body.append(modalWindow);
 
-    setTimeout(()=>{
-      modalWindow.classList.add('open')
-    }, 500)
+    setTimeout(() => {
+      modalWindow.classList.add('open');
+    }, 500);
 
-    closeWindow.addEventListener('click', ()=>{
-      modalWindow.classList.remove('open')
-      setTimeout(()=>{
-        modalWindow.remove()
-      }, 1000)
-    })
+    closeWindow.addEventListener('click', () => {
+      modalWindow.classList.remove('open');
+      setTimeout(() => {
+        modalWindow.remove();
+      }, 1000);
+    });
   }
 }
