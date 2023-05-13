@@ -10,8 +10,8 @@ export class ClicksModule extends Module {
     document.addEventListener('click', () => {
       countClick++;
     });
-    setInterval(() => {
-      alert(`Ну ты и накликал ${countClick}`);
+    setTimeout(() => {
+      alert(`Ну ты и накликал ${countClick-1} раз(а)`);
       document.removeEventListener('click', () => {
         countClick++;
       });
