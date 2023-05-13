@@ -1,5 +1,4 @@
 import { Menu } from "./core/menu";
-
 export class ContextMenu extends Menu {
   constructor(selector) {
     super(selector);
@@ -12,6 +11,7 @@ export class ContextMenu extends Menu {
     const windowWidth = document.documentElement.clientWidth;
     const windowHeight = document.documentElement.clientHeight;
 
+<<<<<<< HEAD
    // this.add();
 
     const li = document.createElement("li");
@@ -28,6 +28,8 @@ export class ContextMenu extends Menu {
 		li4.textContent = "Вызвать сообщение";
 		this.el.append(li,li2,li3,li4);
 
+=======
+>>>>>>> 92f90c34b092f3e11fde7ff8c6e2bf875106de3a
     if (positionX + this.el.offsetWidth >= windowWidth) {
       this.el.style.left = `${positionX - this.el.offsetWidth}px`;
     } else {
@@ -42,12 +44,20 @@ export class ContextMenu extends Menu {
   }
 
   close() {
-	console.log('close');
-	this.el.classList.remove('open');
-	document.querySelectorAll('li').forEach(elem => elem.remove());
+    this.el.classList.remove('open');
   }
 
-  add() {
-    super.add();
+  add(module) {
+    console.log(module);
+    const moduleHTML = module.toHTML(); //так как модуль возвращает HTML, создаем ноду
+    this.el.insertAdjacentHTML('beforeend', moduleHTML); //добавление в пунт меню.
+    let moduleNode = this.el.querySelector(`[data-type=${module.type}`);
+    
+    if (typeof moduleNode !== null) { //обработка клика
+      moduleNode.addEventListener('click', (event) => {
+        module.trigger();
+        this.close();
+      });
+    }
   }
 }
