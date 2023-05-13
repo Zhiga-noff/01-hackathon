@@ -153,3 +153,7 @@ body {
     bottom: 14px;
     transform: rotate(45deg);
 }
+
+.hidden {
+    overflow: hidden;
+}
