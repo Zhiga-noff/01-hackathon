@@ -32,7 +32,7 @@ export class TimerModule extends Module {
 
     const inputModal = document.createElement('input')
     inputModal.id = 'input-modal'
-    inputModal.name = 'Time'
+    inputModal.name = 'time'
     formModal.append(inputModal)
 
     const buttonModal = document.createElement('button')
@@ -59,46 +59,28 @@ export class TimerModule extends Module {
   }
   
   timerTime() {
-    // const newTime = prompt("Задайте время в секундах");
     this.createDiv()
-    this.metod()
-    // const newTime = this.metod()
-    // console.log(newTime);
-    //
-    // if (newTime !== null && newTime !== "" && !isNaN(newTime) && newTime >= 0) {
-    //   this.time = Number(newTime);
-    //   const div = document.getElementById("timer-div");
-    //
-    //   // this.createDiv();
-    //
-    //   this.timerId = setInterval(this.updateTimer, 1000);
-    //
-    // } else {
-    //   // this.createDiv()
-    //   this.textClock.textContent = 'Некорректное время!'
-    // }
-
+    this.requestProcessing()
     this.closeWindow()
   }
-  metod() {
+  requestProcessing() {
     const formModal = document.querySelector('.form-modal')
     formModal.addEventListener('submit', (event)=>{
       event.preventDefault()
 
       const {target} = event
 
-      const newTime = target.Time.value
+      const newTime = target.time.value
+      target.time.value = ''
 
       if (newTime !== null && newTime !== "" && !isNaN(newTime) && newTime >= 0) {
         this.time = Number(newTime);
         const div = document.getElementById("timer-div");
 
-        // this.createDiv();
-
         this.timerId = setInterval(this.updateTimer, 1000);
 
       } else {
-        // this.createDiv()
+
         this.textClock.textContent = 'Некорректное время!'
       }
     })
