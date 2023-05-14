@@ -23,6 +23,9 @@ export class ContextMenu extends Menu {
       this.el.style.top = `${positionY}px`;
     }
   }
+  
+/* Этот метод удаляет класс 'open', 
+для того чтобы контестное меню не отображалось*/ 
 
   close() {
     this.el.classList.remove('open');
