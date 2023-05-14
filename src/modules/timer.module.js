@@ -4,7 +4,7 @@ export class TimerModule extends Module {
   constructor(type, text) {
     super(type, text);
 
-    this.time = 0;
+    this.time = 0; // Переменная, в которую после будет попадать заданное время
     this.textClock = null;
     this.timerId = null;
     this.createDiv = this.createDiv.bind(this);
@@ -64,7 +64,9 @@ export class TimerModule extends Module {
 
       const newTime = target.time.value;
       target.time.value = '';
-
+/*
+Проверки, чтобы не попадали строки и время < 0 
+*/
       if (
         newTime !== null &&
         newTime !== '' &&
@@ -80,7 +82,7 @@ export class TimerModule extends Module {
         info.classList.remove('margin');
         info.textContent = 'Loading...';
 
-        this.timerId = setInterval(this.updateTimer, 1000);
+        this.timerId = setInterval(this.updateTimer, 1000); // Отсчитывать секунды
       } else {
         const info = document.querySelector('.info');
         info.classList.add('margin');
@@ -90,7 +92,7 @@ export class TimerModule extends Module {
   }
 
   updateTimer() {
-    const minutes = Math.floor(this.time / 60);
+    const minutes = Math.floor(this.time / 60); // переводим время в минуты
     const seconds = this.time % 60;
     const modalWindowTimer = document.querySelector('.modal-window');
     const info = modalWindowTimer.querySelector('.info');
@@ -98,12 +100,12 @@ export class TimerModule extends Module {
 
     this.textClock.textContent = `TIMER TIME: ${minutes
       .toString()
-      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`; // Разбиваем время на формат MM:SS
 
     this.time--;
 
     if (this.time < 0 || !modalWindowTimer) {
-      clearInterval(this.timerId);
+      clearInterval(this.timerId); // убираем интервал, чтобы при новом таймере время шло как надо
 
       info.classList.add('margin');
 
