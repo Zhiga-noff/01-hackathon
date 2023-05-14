@@ -7,6 +7,7 @@ import { ClicksModule } from './modules/clicks.module';
 import { hiddenMenu } from './utils';
 import { TimerModule } from './modules/timer.module';
 
+// СИнициализируем объекты фичей
 const moduleFeatches = [
   new ClicksModule('clicks', 'Считать клики (за 3 секунды)'),
   new BackgroundModule('background', 'Поменять цвет'),
