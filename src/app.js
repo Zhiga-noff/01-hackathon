@@ -16,10 +16,14 @@ const moduleFeatches = [
 
 const contextMenu = new ContextMenu('#menu');
 
+// Событие на клик правой кнопкой мыши
 document.addEventListener('contextmenu', (event) => {
   event.preventDefault();
+
+  // Получаю точное местоположение курсора
   const { clientX, clientY } = event;
   contextMenu.open(clientX, clientY);
+
   hiddenMenu();
 });
 

@@ -6,10 +6,13 @@ export class ClicksModule extends Module {
   }
 
   trigger() {
+    // Реализация подсчета кликов
     let countClick = 0;
     document.addEventListener('click', () => {
       countClick++;
     });
+
+    // Удаляет прослушку через 3 секунды
     setTimeout(() => {
       this.createModalWindow(countClick);
       document.removeEventListener('click', () => {
@@ -22,6 +25,7 @@ export class ClicksModule extends Module {
     return super.toHTML();
   }
 
+  // Метод создающий модальное окно
   createModalWindow(count) {
     const modalWindow = document.createElement('div');
     modalWindow.className = 'modal-window';
@@ -43,6 +47,7 @@ export class ClicksModule extends Module {
       modalWindow.classList.add('open');
     }, 500);
 
+    // Метод удаляющий модальное окно
     closeWindow.addEventListener('click', () => {
       modalWindow.classList.remove('open');
       setTimeout(() => {
